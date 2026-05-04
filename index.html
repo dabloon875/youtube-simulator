@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YouTuber Simulator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-badge">YT</div>
+        <div>
+          <h1>YouTuber Simulator</h1>
+          <p>Build your channel from zero to viral.</p>
+        </div>
+      </div>
+
+      <div class="save-pill" id="saveState">
+        Saved locally
+      </div>
+    </header>
+
+    <section class="stats-grid">
+      <div class="stat-card">
+        <svg viewBox="0 0 24 24" class="stat-icon">
+          <path d="M12 4.5C7 4.5 2.7 7.6 1 12c1.7 4.4 6 7.5 11 7.5s9.3-3.1 11-7.5c-1.7-4.4-6-7.5-11-7.5zm0 12.5a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"></path>
+        </svg>
+        <div>
+          <span class="label">Views</span>
+          <span class="value" id="views">0</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <svg viewBox="0 0 24 24" class="stat-icon">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6 4 4 6.5 4c1.74 0 3.41 1.01 4.22 2.53C11.09 5.01 12.76 4 14.5 4 17 4 19 6 19 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+        </svg>
+        <div>
+          <span class="label">Likes</span>
+          <span class="value" id="likes">0</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <svg viewBox="0 0 24 24" class="stat-icon">
+          <path d="M12 12c2.7 0 4.8-2.2 4.8-4.8S14.7 2.4 12 2.4 7.2 4.6 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8V22h19.2v-2.8c0-3.2-6.4-4.8-9.6-4.8z"></path>
+        </svg>
+        <div>
+          <span class="label">Subs</span>
+          <span class="value" id="subs">0</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <svg viewBox="0 0 24 24" class="stat-icon">
+          <path d="M12 1.5l3.09 6.26 6.91 1.01-5 4.87 1.18 6.88L12 16.99l-6.18 3.53L7 13.64l-5-4.87 6.91-1.01L12 1.5z"></path>
+        </svg>
+        <div>
+          <span class="label">Money</span>
+          <span class="value" id="money">$0</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <svg viewBox="0 0 24 24" class="stat-icon">
+          <path d="M12 2l3 6 6 .9-4.3 4.2 1 6L12 16.9 6.3 19l1-6L3 8.9 9 8z"></path>
+        </svg>
+        <div>
+          <span class="label">Level</span>
+          <span class="value" id="level">1</span>
+        </div>
+      </div>
+    </section>
+
+    <main class="layout">
+      <section class="left-col">
+        <div class="channel-card card">
+          <div class="banner"></div>
+          <div class="channel-info">
+            <div class="avatar">D</div>
+            <div>
+              <h2>Dabloon Plays</h2>
+              <p id="channelTag">@dabloonplays • <span id="videoCount">0</span> videos uploaded</p>
+            </div>
+          </div>
+
+          <div class="channel-metrics">
+            <div><span>XP</span><strong id="xp">0</strong></div>
+            <div><span>Trend streak</span><strong id="streak">0</strong></div>
+            <div><span>Top video</span><strong id="topVideo">None yet</strong></div>
+          </div>
+        </div>
+
+        <div class="card studio-card">
+          <h3>Creator Studio</h3>
+
+          <div class="field-row">
+            <label for="genreSelect">Video type</label>
+            <select id="genreSelect">
+              <option value="Gaming">Gaming</option>
+              <option value="Vlog">Vlog</option>
+              <option value="Challenge">Challenge</option>
+              <option value="Tutorial">Tutorial</option>
+              <option value="Reaction">Reaction</option>
+              <option value="Comedy">Comedy</option>
+            </select>
+          </div>
+
+          <div class="field-row">
+            <label for="lengthSelect">Length</label>
+            <select id="lengthSelect">
+              <option value="short">Short</option>
+              <option value="medium" selected>Medium</option>
+              <option value="long">Long</option>
+            </select>
+          </div>
+
+          <div class="field-row">
+            <label for="titleInput">Video title</label>
+            <input id="titleInput" type="text" placeholder="Generate or type a title..." />
+          </div>
+
+          <div class="button-row">
+            <button id="generateTitleBtn" class="secondary-btn">
+              <svg viewBox="0 0 24 24" class="btn-icon">
+                <path d="M12 2a2 2 0 0 1 2 2v1.1a7.9 7.9 0 0 1 4.1 1.7l.8-.8a2 2 0 1 1 2.8 2.8l-.8.8A7.9 7.9 0 0 1 22 13h1a2 2 0 1 1 0 4h-1a7.9 7.9 0 0 1-1.7 4.1l.8.8a2 2 0 1 1-2.8 2.8l-.8-.8A7.9 7.9 0 0 1 14 22.9V24a2 2 0 1 1-4 0v-1.1a7.9 7.9 0 0 1-4.1-1.7l-.8.8a2 2 0 1 1-2.8-2.8l.8-.8A7.9 7.9 0 0 1 2 17H1a2 2 0 1 1 0-4h1a7.9 7.9 0 0 1 1.7-4.1l-.8-.8a2 2 0 1 1 2.8-2.8l.8.8A7.9 7.9 0 0 1 10 5.1V4a2 2 0 0 1 2-2zm0 6a6 6 0 1 0 0 12A6 6 0 0 0 12 8z"></path>
+              </svg>
+              AI Title
+            </button>
+
+            <button id="uploadBtn" class="main-btn">
+              <svg viewBox="0 0 24 24" class="btn-icon">
+                <path d="M17 10.5V6c0-1.1-.9-2-2-2H5C3.9 4 3 4.9 3 6v12c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-4.5l4 4v-11l-4 4z"></path>
+              </svg>
+              Upload Video
+            </button>
+          </div>
+
+          <div class="upload-preview">
+            <div class="thumb-preview" id="thumbPreview">
+              <span>Thumbnail preview</span>
+            </div>
+            <div class="preview-meta">
+              <div class="trend-badge" id="trendBadge">Trend: Loading...</div>
+              <div class="preview-title" id="previewTitle">Your title will appear here</div>
+              <div class="preview-subtitle" id="previewSubtitle">Choose a genre and generate a title.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card shop-card">
+          <h3>Upgrades</h3>
+
+          <div class="upgrade-grid">
+            <button class="upgrade-btn" id="cameraBtn"></button>
+            <button class="upgrade-btn" id="editorBtn"></button>
+            <button class="upgrade-btn" id="adsBtn"></button>
+            <button class="upgrade-btn" id="thumbnailBtn"></button>
+            <button class="upgrade-btn" id="managerBtn"></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="right-col">
+        <div class="card trending-card">
+          <div class="section-head">
+            <h3>Trending Now</h3>
+            <div class="live-dot"></div>
+          </div>
+          <p class="trend-name" id="currentTrend">Loading...</p>
+          <p class="trend-text" id="trendText">Make videos around this topic for a bonus.</p>
+        </div>
+
+        <div class="card library-card">
+          <div class="section-head">
+            <h3>Recent Uploads</h3>
+            <button id="resetBtn" class="ghost-btn">Reset Save</button>
+          </div>
+          <div class="video-grid" id="videoGrid"></div>
+        </div>
+
+        <div class="card achievements-card">
+          <h3>Achievements</h3>
+          <div id="achievementsList" class="achievement-list"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="log-card card">
+      <div class="section-head">
+        <h3>Log</h3>
+        <button id="saveBtn" class="ghost-btn">Save Now</button>
+      </div>
+      <div id="log" class="log">Welcome to your channel. Generate a title and upload your first video.</div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
